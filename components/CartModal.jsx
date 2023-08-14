@@ -7,16 +7,15 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const CartModal = () => {
-  const { isCartModalOpen, currentProductID } = useSelector(
+  const { isCartModalOpen, currentProductID, cartProducts } = useSelector(
     (state) => state.addToCartSlice
   );
   const [product, setProduct] = useState();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const products = JSON.parse(localStorage.getItem("cartProducts"));
-    setProduct(products.find((p) => p.id === currentProductID));
-  }, []);
+    setProduct(cartProducts.find((p) => p.id === currentProductID));
+  }, [currentProductID]);
 
   return (
     <div
