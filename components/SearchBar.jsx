@@ -45,8 +45,6 @@ const SearchBar = ({ setIsSearchOpen }) => {
     return () => null;
   }, [searchValue]);
 
-  console.log(searchProducts);
-
   return (
     <div className="search absolute top-0 left-0 w-full h-full bg-[#ffffffde] backdrop:blur-sm">
       <div className="relative flex items-center justify-center h-full">

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles";
 import Image from "next/image";
-import DashDrop from "./dashDrop";
+import DashDrop from "./DashDrop";
 
 const NewCustomers = () => {
   return (
