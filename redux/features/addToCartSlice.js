@@ -8,7 +8,10 @@ const addToCartSlice = createSlice({
   initialState: {
     amount: 1,
     isCartModalOpen: false,
-    cartProducts: JSON.parse(localStorage?.getItem("cartProducts")) || [],
+    cartProducts:
+      typeof window !== "undefined"
+        ? JSON.parse(localStorage?.getItem("cartProducts")) || []
+        : [],
     currentProductID: "",
   },
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -10,6 +10,7 @@ import "swiper/css";
 // import required modules
 import styles from "./styles";
 import { Navigation } from "swiper";
+import Image from "next/image";
 
 const BlogSlider = ({ blogs }) => {
   return (
@@ -35,7 +36,7 @@ const BlogSlider = ({ blogs }) => {
         {blogs.map((blog) => (
           <SwiperSlide key={blog.title}>
             <div className="blogItem">
-              <img
+              <Image
                 src={blog.img_url}
                 alt={blog.title}
                 width={300}

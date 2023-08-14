@@ -4,31 +4,33 @@ import BlogSlider from "../BlogSlider";
 
 const blogs = [
   {
-    title: "lorem Ipsum something",
+    title: "numquam atque suscipit",
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo quae incidunt, qui rerum facilis numquam atque suscipit adipisci molestiae praesentium exercitationem sapiente quo non pariatur, impedit fugit aliquid modi. Et!`,
-    img_url:
-      "https://prestashop.mahardhi.com/MT08/wearzo/01/blog/3-home-default/lorem-ipsum-dolor.jpg",
+    img_url: "/assets/blog.jpg",
     date_time: "09/01/2022 10:07:32",
   },
   {
-    title: "lorem Ipsum something1",
+    title: "praesentium exercitationem sapiente",
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo quae incidunt, qui rerum facilis numquam atque suscipit adipisci molestiae praesentium exercitationem sapiente quo non pariatur, impedit fugit aliquid modi. Et!`,
-    img_url:
-      "https://prestashop.mahardhi.com/MT08/wearzo/01/blog/3-home-default/lorem-ipsum-dolor.jpg",
+    img_url: "/assets/blog2.jpg",
     date_time: "09/01/2022 10:07:32",
   },
   {
-    title: "lorem Ipsum something2",
+    title: "Illo quae incidunt",
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo quae incidunt, qui rerum facilis numquam atque suscipit adipisci molestiae praesentium exercitationem sapiente quo non pariatur, impedit fugit aliquid modi. Et!`,
-    img_url:
-      "https://prestashop.mahardhi.com/MT08/wearzo/01/blog/3-home-default/lorem-ipsum-dolor.jpg",
+    img_url: "/assets/blog3.jpg",
     date_time: "09/01/2022 10:07:32",
   },
   {
-    title: "lorem Ipsum something3",
+    title: "consectetur adipisicing elit",
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo quae incidunt, qui rerum facilis numquam atque suscipit adipisci molestiae praesentium exercitationem sapiente quo non pariatur, impedit fugit aliquid modi. Et!`,
-    img_url:
-      "https://prestashop.mahardhi.com/MT08/wearzo/01/blog/3-home-default/lorem-ipsum-dolor.jpg",
+    img_url: "/assets/blog4.jpg",
+    date_time: "09/01/2022 10:07:32",
+  },
+  {
+    title: "impedit fugit aliquid modi",
+    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo quae incidunt, qui rerum facilis numquam atque suscipit adipisci molestiae praesentium exercitationem sapiente quo non pariatur, impedit fugit aliquid modi. Et!`,
+    img_url: "/assets/blog5.jpg",
     date_time: "09/01/2022 10:07:32",
   },
 ];
