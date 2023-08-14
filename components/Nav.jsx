@@ -96,7 +96,7 @@ const Nav = () => {
               src="/assets/logo.png"
               width={80}
               height={80}
-              className="mr-auto lg:ml-auto w-auto h-auto"
+              className="mr-auto max-w-[80px] lg:ml-auto w-auto h-auto"
               alt="logo"
             />
           </div>

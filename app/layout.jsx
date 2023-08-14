@@ -1,15 +1,11 @@
-"use client";
-
 import { Footer, Nav, ProductModal, TopNav } from "@/components";
 import "./globals.css";
 import "./index.css";
 
-import store from "@/redux/store";
-import { Provider } from "react-redux";
 import LocationNav from "@/components/LocationNav";
-import { usePathname } from "next/navigation";
 import CartModal from "@/components/CartModal";
 import UpdateProductModal from "@/components/dashboard/add-products/UpdateProductModal";
+import Providers from "@/redux/provider";
 
 export const metadata = {
   title: "Ak fashion",
@@ -17,17 +13,19 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const pathname = usePathname();
+  // const router = useRouter();
 
   return (
     <html lang="en">
       <body
         suppressHydrationWarning={true}
-        className={`${
-          pathname.includes("dashboard") ? "overflow-hidden" : "overflow-auto"
-        }`}
+        // className={`${
+        //   router.pathname.includes("dashboard")
+        //     ? "overflow-hidden"
+        //     : "overflow-auto"
+        // }`}
       >
-        <Provider store={store}>
+        <Providers>
           <header>
             <TopNav />
             <Nav />
@@ -37,7 +35,7 @@ export default function RootLayout({ children }) {
           <ProductModal />
           <CartModal />
           <UpdateProductModal />
-        </Provider>
+        </Providers>
         <Footer />
       </body>
     </html>

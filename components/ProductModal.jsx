@@ -166,7 +166,7 @@ const ProductModal = () => {
                 <article className="text-sm mt-5">{description}</article>
 
                 {sizes?.length > 0 && (
-                  <div className="flex gap-3 mt-5 items-center">
+                  <div className="flex gap-3 mt-5 flex-wrap items-center">
                     <label
                       htmlFor="sizesSelect"
                       className="text-black min-w-[100px]"
@@ -190,7 +190,7 @@ const ProductModal = () => {
                 )}
 
                 {colors?.length > 0 && (
-                  <div className="flex gap-3 items-center mt-5">
+                  <div className="flex gap-3 flex-wrap items-center mt-5">
                     <h2 htmlFor="sizes" className="text-black min-w-[100px]">
                       Colors
                     </h2>
@@ -220,7 +220,7 @@ const ProductModal = () => {
                 {/* property */}
 
                 {properties?.length > 0 && (
-                  <div className="flex gap-3 items-center mt-5">
+                  <div className="flex gap-3 flex-wrap items-center mt-5">
                     <label className="text-black min-w-[100px]">Property</label>
                     <div className="flex gap-2 gap-y-3 flex-wrap">
                       <select
@@ -243,7 +243,7 @@ const ProductModal = () => {
                 {/* composition */}
 
                 {composition?.length > 0 && (
-                  <div className="flex gap-3 items-center mt-5">
+                  <div className="flex flex-wrap gap-3 items-center mt-5">
                     <label className="text-black min-w-[100px]">
                       Composition
                     </label>

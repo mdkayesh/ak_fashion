@@ -4,6 +4,7 @@ import styles from "@/components/styles";
 import { Edit } from "@/utils/icons";
 import ImageSizeChecker from "./ImageSizeChecker";
 import { v4 as uuid4 } from "uuid";
+import Image from "next/image";
 
 const ImageUploadCart = ({
   values,
@@ -102,7 +103,7 @@ const ImageUploadCart = ({
           className="cursor-pointer"
           title={imageProperty}
         >
-          <img
+          <Image
             src={
               sizeError
                 ? "/assets/preview.jpg"

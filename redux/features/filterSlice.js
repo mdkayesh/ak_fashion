@@ -105,9 +105,8 @@ const filterSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(getTheDocs.fulfilled, (state, { payload }) => {
-      console.log(payload);
       const { products, values } = payload;
-      const { sizes, compositions, properties, availablility } = values;
+      const { sizes, compositions, properties } = values;
 
       // set tempProducts
       let tempProducts = [];

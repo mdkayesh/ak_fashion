@@ -1,3 +1,5 @@
+"use client";
+
 import { auth, db } from "@/firebase/firebase";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
