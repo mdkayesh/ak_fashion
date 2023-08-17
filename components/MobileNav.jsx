@@ -12,7 +12,11 @@ const MobileNav = ({ navlinks, isNavOpen, setIsNavOpen }) => {
     >
       <ul className="px-4 py-6 overflow-auto h-full">
         <li className="flex justify-between items-center mb-4">
-          <Link href={"/"} className="logo">
+          <Link
+            href={"/"}
+            className="logo"
+            onClick={() => setIsNavOpen(!isNavOpen)}
+          >
             <Image
               src="/assets/logo.png"
               width={80}
@@ -27,7 +31,7 @@ const MobileNav = ({ navlinks, isNavOpen, setIsNavOpen }) => {
           </button>
         </li>
         {navlinks.map((link) => (
-          <li key={link.title}>
+          <li key={link.title} onClick={() => setIsNavOpen(!isNavOpen)}>
             <Link href={link.url} className="block mb-3 hover:text-primary">
               {link.title}
             </Link>

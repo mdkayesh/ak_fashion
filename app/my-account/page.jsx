@@ -52,8 +52,8 @@ const MyAccount = () => {
       icon: <CreditCart className="w-10 h-10" />,
     },
     {
-      title: "My wishlists",
-      url: "my-account/my-wishlists",
+      title: "My wishlist",
+      url: "my-account/my-wishlist",
       icon: <HeartFill className="w-10 h-10" />,
     },
   ];
