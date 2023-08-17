@@ -72,6 +72,38 @@ section {
     }
 }
 
+/* loading animations */
+
+.loading-path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: loading 2s ease-in-out infinite alternate;
+}
+
+@keyframes loading {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.loading-path-text {
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: center center;
+    animation: loadingText 2s ease 2s infinite alternate-reverse;
+}
+
+@keyframes loadingText {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+
+
+
 .swiper-pagination-bullet {
     width: 10px !important;
     height: 10px !important;
@@ -214,10 +246,12 @@ input[type=range]::-webkit-slider-runnable-track {
 
 /* style the tappane scroll bal */
 
+.filter-nav::-webkit-scrollbar,
 .tabpane::-webkit-scrollbar {
     width: 8px;
 }
 
+.filter-nav::-webkit-scrollbar-thumb,
 .tabpane::-webkit-scrollbar-thumb {
     background-color: rgb(232, 232, 232);
     border-radius: 99px;

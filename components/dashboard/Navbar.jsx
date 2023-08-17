@@ -12,7 +12,6 @@ const Navbar = () => {
   const [isOpenNotify, setIsOpenNotify] = useState(false);
   const { user } = useSelector((state) => state.authSlice);
   const dispatch = useDispatch();
-  console.log(user);
 
   return (
     <div className="sticky top-0 left-0 w-full h-16 py-2 px-4 border-b flex items-center bg-white z-30">

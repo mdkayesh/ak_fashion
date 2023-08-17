@@ -1,11 +1,10 @@
 "use client";
 
-import { handleAmount } from "@/redux/features/addToCartSlice";
+import { handleCartAmount } from "@/redux/features/addToCartSlice";
 import { Minus, Plus } from "@/utils/icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-const Quantity = ({ stock }) => {
-  const { _amount } = useSelector((state) => state.addToCartSlice);
+const CartQuantity = ({ stock, id, amount }) => {
   const dispatch = useDispatch();
 
   return (
@@ -14,16 +13,16 @@ const Quantity = ({ stock }) => {
         type="button"
         className="h-10 bg-gray-100 flex justify-center items-center px-3"
         onClick={() =>
-          dispatch(handleAmount({ direction: "decrement", stock }))
+          dispatch(handleCartAmount({ direction: "decrement", stock, id }))
         }
       >
         <Minus />
       </button>
       <input
         type="number"
-        name="quantity"
-        id="quantity"
-        value={_amount}
+        name="CartQuantity"
+        id="CartQuantity"
+        value={amount}
         className="max-w-[50px] outline-none px-3 py-2 text-center h-fit"
         min={1}
         readOnly
@@ -32,7 +31,7 @@ const Quantity = ({ stock }) => {
         type="button"
         className="h-10 bg-gray-100 flex justify-center items-center px-3"
         onClick={() =>
-          dispatch(handleAmount({ direction: "increament", stock }))
+          dispatch(handleCartAmount({ direction: "increament", stock, id }))
         }
       >
         <Plus />
@@ -41,4 +40,4 @@ const Quantity = ({ stock }) => {
   );
 };
 
-export default Quantity;
+export default CartQuantity;

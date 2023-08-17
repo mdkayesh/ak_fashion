@@ -13,7 +13,7 @@ const DashLayout = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!user && user.uid !== process.env.NEXT_PUBLIC_ADMIN_ID) {
+    if (!user && user?.uid !== process.env.NEXT_PUBLIC_ADMIN_ID) {
       router.push("/");
     }
 

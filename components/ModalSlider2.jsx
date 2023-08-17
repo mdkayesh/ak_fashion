@@ -9,7 +9,12 @@ import "swiper/css";
 import { Navigation } from "swiper";
 import Image from "next/image";
 
-export default function ModalSlider2({ images, setActiveImg, loading }) {
+export default function ModalSlider2({
+  images,
+  setActiveImg,
+  loading,
+  isProducModalOpen,
+}) {
   return (
     <>
       <Swiper
@@ -27,7 +32,9 @@ export default function ModalSlider2({ images, setActiveImg, loading }) {
           >
             <div
               className={`${
-                loading ? "opacity-100 visible" : "invisible opacity-0"
+                loading && isProducModalOpen
+                  ? "opacity-100 visible"
+                  : "invisible opacity-0"
               } w-full h-full backdrop-blur-sm transition-all duration-500 absolute top-0 left-0`}
             />
             <Image

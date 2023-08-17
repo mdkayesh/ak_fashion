@@ -13,18 +13,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // const router = useRouter();
-
   return (
     <html lang="en">
-      <body
-        suppressHydrationWarning={true}
-        // className={`${
-        //   router.pathname.includes("dashboard")
-        //     ? "overflow-hidden"
-        //     : "overflow-auto"
-        // }`}
-      >
+      <body suppressHydrationWarning={true}>
         <Providers>
           <header>
             <TopNav />

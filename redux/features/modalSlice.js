@@ -25,7 +25,6 @@ const modalSlice = createSlice({
       state.isUserModal = !state.isUserModal;
     },
     setUpdateModal: (state) => {
-      console.log("click");
       state.isUpdateModal = !state.isUpdateModal;
     },
     setView: (state, { payload }) => {

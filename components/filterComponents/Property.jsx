@@ -1,7 +1,7 @@
-import { Checked } from "@/utils/icons";
+import { Checked, Minus, Plus } from "@/utils/icons";
 import styles from "../styles";
 
-const Property = ({ handleChange }) => {
+const Property = ({ handleChange, filterName, handleFilterName, values }) => {
   const property = [
     {
       title: "120 pages",
@@ -18,9 +18,23 @@ const Property = ({ handleChange }) => {
   ];
 
   return (
-    <div className="mt-6">
-      <h3 className={`${styles.filterHeading}`}>Property</h3>
-      <div>
+    <div className="mt-3 lg:mt-6">
+      <h3
+        className={`${styles.filterHeading}`}
+        onClick={() => handleFilterName("property")}
+      >
+        <span>Property</span>
+        <span className="lg:hidden">
+          {filterName === "property" ? <Minus /> : <Plus />}
+        </span>
+      </h3>
+      <div
+        className={`${
+          filterName === "property"
+            ? "max-h-[350px]"
+            : "max-h-0 lg:max-h-[350px]"
+        } transition-all duration-500 ease-in-out overflow-hidden`}
+      >
         {property.map((prop) => (
           <label
             htmlFor={prop.title}
@@ -35,6 +49,7 @@ const Property = ({ handleChange }) => {
                   id={prop.title}
                   value={prop.title}
                   onChange={handleChange}
+                  checked={values.properties.includes(prop.title)}
                   className={`${styles.filterInput}`}
                 />
                 <Checked className={`${styles.filterChecked}`} />
@@ -43,7 +58,6 @@ const Property = ({ handleChange }) => {
                 {prop.title}
               </span>
             </div>
-            <span>7</span>
           </label>
         ))}
       </div>

@@ -15,16 +15,19 @@ const CartModal = () => {
 
   useEffect(() => {
     setProduct(cartProducts.find((p) => p.id === currentProductID));
-  }, [currentProductID]);
 
+    console.log("cartProducts");
+  }, [currentProductID, cartProducts]);
+
+  console.log(cartProducts);
   return (
     <div
       className={`${
         isCartModalOpen ? "visible" : "invisible"
-      } cart-modal fixed top-0 left-0 w-full h-full px-10 py-16 bg-[#0000006d] z-50 overflow-auto`}
+      } cart-modal fixed top-0 left-0 w-full h-full px-6 md:px-10 py-16 bg-[#0000006d] z-50 overflow-auto`}
       onClick={() => dispatch(closeCartModal())}
     >
-      <div className="flex justify-center items-center text-sm h-full">
+      <div className="flex justify-center items-center text-sm">
         {/* ---main--- */}
         <div
           className={`${
@@ -47,7 +50,7 @@ const CartModal = () => {
           </div>
 
           {/* ---- */}
-          <div className="flex gap-5 px-7 py-8 flex-col md:flex-row">
+          <div className="flex gap-5 px-4 py-6 md:px-7 md:py-8 flex-col md:flex-row">
             <div className="img">
               <Image
                 src={product?.image || "/assets/preview.jpg"}
@@ -57,8 +60,8 @@ const CartModal = () => {
                 alt={product?.title}
               />
             </div>
-            <div className="flex gap-3 w-full">
-              <div className="max-w-[200px]">
+            <div className="flex gap-x-3 gap-y-6 w-full flex-col md:flex-row">
+              <div className="w-full md:max-w-[200px]">
                 <h3 className="text-heading_color text-base font-semibold">
                   {product?.title}
                 </h3>
@@ -107,7 +110,7 @@ const CartModal = () => {
                   <p className="font-[500] capitalize">{product?.amount}</p>
                 </div>
               </div>
-              <div className="border-l pl-3 text-[#1e1e1e] flex-1">
+              <div className="md:border-l md:pl-3 text-[#1e1e1e] flex-1">
                 <p>There are {product?.amount} items in your cart.</p>
                 <div className="flex justify-between items-center w-full px-2 mt-4">
                   <p className="font-semibold">Total prize:</p>

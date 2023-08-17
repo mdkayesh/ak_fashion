@@ -128,7 +128,6 @@ const AddProducts = () => {
     },
   });
 
-  console.log("errors", errors);
   return (
     <div className={`${styles.paddingX} pt-12`}>
       <LocationNav

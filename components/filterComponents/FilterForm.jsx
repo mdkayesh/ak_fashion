@@ -10,13 +10,11 @@ import Property from "./Property";
 import Availability from "./Availability";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  filterBy,
   getTheDocs,
   setLoading,
   setProductsLength,
 } from "@/redux/features/filterSlice";
 import {
-  and,
   collection,
   getDocs,
   limit,
@@ -27,15 +25,11 @@ import {
   startAt,
   where,
 } from "firebase/firestore";
-import {
-  db,
-  getAllProducts,
-  getCount,
-  getProductsByCategory,
-} from "@/firebase/firebase";
+import { db, getCount } from "@/firebase/firebase";
+import styles from "../styles";
 
 const FilterForm = () => {
-  const { handleChange, values, setValues } = useFormik({
+  const { handleChange, values, setValues, resetForm } = useFormik({
     initialValues: {
       categories: [],
       minPrize: 0,
@@ -52,6 +46,8 @@ const FilterForm = () => {
   const dispatch = useDispatch();
   const [max, setMax] = useState();
   const [lastVisible, setLastVisible] = useState();
+  const [clearFilter, setClearFilter] = useState(false);
+  const [filterName, setFilterName] = useState(null); // for mobile device
 
   const colRef = collection(db, "all_products");
   let q = query(colRef);
@@ -62,6 +58,11 @@ const FilterForm = () => {
     let cancel = false;
 
     // set loading
+    if (categories.length > 0 || colors.length > 0 || minPrize > 0) {
+      setClearFilter(true);
+    } else {
+      setClearFilter(false);
+    }
 
     dispatch(setLoading(true));
 
@@ -130,20 +131,79 @@ const FilterForm = () => {
     return () => null;
   }, []);
 
+  const handleFilterName = (name) => {
+    setFilterName(name !== filterName ? name : null);
+  };
+
   return (
     <form action={""}>
-      <Categories handleChange={handleChange} values={values} />
+      <h2 className="text-heading_color text-lg font-semibold mb-4 lg:hidden">
+        Filter by
+      </h2>
+      {clearFilter && (
+        <button
+          type="button"
+          className={`${styles.btn_rounded_secondary} mb-4`}
+          onClick={() =>
+            setValues({
+              categories: [],
+              minPrize: 0,
+              maxPrize: max,
+              colors: [],
+              sizes: [],
+              compositions: [],
+              properties: [],
+              availablility: [],
+            })
+          }
+        >
+          Clear Filter
+        </button>
+      )}
+      <Categories
+        handleChange={handleChange}
+        values={values}
+        filterName={filterName}
+        handleFilterName={handleFilterName}
+      />
       <PrizeRange
         handleChange={handleChange}
         values={values}
         setValues={setValues}
         maxPrize={max}
+        filterName={filterName}
+        handleFilterName={handleFilterName}
       />
-      <Colors handleChange={handleChange} />
-      <Sizes handleChange={handleChange} />
-      <Compositions handleChange={handleChange} />
-      <Property handleChange={handleChange} />
-      <Availability handleChange={handleChange} />
+      <Colors
+        handleChange={handleChange}
+        filterName={filterName}
+        handleFilterName={handleFilterName}
+        values={values}
+      />
+      <Sizes
+        handleChange={handleChange}
+        filterName={filterName}
+        handleFilterName={handleFilterName}
+        values={values}
+      />
+      <Compositions
+        handleChange={handleChange}
+        filterName={filterName}
+        handleFilterName={handleFilterName}
+        values={values}
+      />
+      <Property
+        handleChange={handleChange}
+        filterName={filterName}
+        handleFilterName={handleFilterName}
+        values={values}
+      />
+      <Availability
+        handleChange={handleChange}
+        filterName={filterName}
+        handleFilterName={handleFilterName}
+        values={values}
+      />
     </form>
   );
 };

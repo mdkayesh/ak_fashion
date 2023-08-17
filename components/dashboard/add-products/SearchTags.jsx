@@ -10,7 +10,6 @@ const SearchTags = ({ tags, setValues, errors, handleBlur, touched }) => {
   };
 
   const handleInputKeyDown = (event) => {
-    console.log(event.key);
     if (event.key === " " && currentTag.trim() !== "") {
       setValues((prev) => {
         return { ...prev, tags: [...prev.tags, currentTag.trim()] };

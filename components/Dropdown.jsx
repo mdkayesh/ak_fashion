@@ -1,7 +1,6 @@
 "use client";
 
 import { Cross, Uro, Usd } from "@/utils/icons";
-import styles from "./styles";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "@/redux/features/authSlice";
@@ -61,7 +60,7 @@ const profileLinks = [
   },
   {
     title: "My wishlists",
-    url: "/my-account/my-wishlists",
+    url: "/my-account/my-wishlist",
   },
   {
     title: "Sign out",
@@ -128,10 +127,14 @@ const ProfileDrop = ({ user }) => {
       ) : (
         <>
           <li className="text-sm capitalize">
-            <Link href="/signin">Sign In</Link>
+            <Link className="hover:text-primary" href="/signin">
+              Sign In
+            </Link>
           </li>
           <li className="text-sm capitalize">
-            <Link href="/register">Register</Link>
+            <Link className="hover:text-primary" href="/register">
+              Register
+            </Link>
           </li>
         </>
       )}
@@ -149,14 +152,14 @@ const CartProductsDrop = () => {
 
   return (
     <div>
-      <ul
+      <div
         className={`bg-white px-4 border-t-2 py-3 border-solid border-primary text-text_color flex flex-col gap-4 max-h-[60vh] overflow-auto`}
       >
         {cartProducts.length === 0 ? (
-          <li className="text-sm text-center">No product added</li>
+          <div className="text-sm text-center">No product added</div>
         ) : (
           cartProducts.map((product) => (
-            <li className="text-sm relative" key={product.id}>
+            <div className="text-sm relative" key={product.id}>
               <div
                 className="absolute top-0 right-0 text-lg cursor-pointer"
                 onClick={() => dispatch(handleRemoveCart(product.id))}
@@ -186,22 +189,22 @@ const CartProductsDrop = () => {
                   </p>
                 </div>
               </div>
-            </li>
+            </div>
           ))
         )}
-      </ul>
+      </div>
       <div className="total border-t border-b flex justify-between items-center py-2 px-4">
         <p>Total</p>
         <p>${Number(total.toFixed(2))}</p>
       </div>
 
       <div className="flex justify-center gap-3 items-center py-3 px-4">
-        <button
-          type="button"
+        <Link
+          href={"/my-account/cartlist"}
           className="px-4 py-2 bg-primary_btn_bg text-primary_btn_text hover:bg-primary_btn_bg_hover hover:text-primary_btn_text_hover"
         >
           View Cart
-        </button>
+        </Link>
         <button
           type="button"
           className="px-4 py-2 bg-primary_btn_bg text-primary_btn_text hover:bg-primary_btn_bg_hover hover:text-primary_btn_text_hover"

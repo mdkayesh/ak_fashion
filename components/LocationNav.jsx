@@ -13,10 +13,12 @@ const LocationNav = () => {
         pathname === "/" ? "hidden" : "block"
       } location-nav bg-gray-100 ${styles.paddingX}`}
     >
-      <div className={`py-3 container flex justify-between items-center`}>
+      <div
+        className={`py-3 container flex flex-col justify-center gap-4 sm:flex-row sm:justify-between items-center flex-wrap`}
+      >
         <h4 className="text-xl text-heading_color font-semibold">Shop</h4>
         <div>
-          <ul className="flex">
+          <ul className="flex flex-wrap">
             <li>
               <Link href="/">Home</Link>
             </li>

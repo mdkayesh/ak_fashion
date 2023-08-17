@@ -1,10 +1,16 @@
+"use client";
+
 import { CategoryNav } from "@/components";
 import CategoryPagination from "@/components/CategoryPagination";
 import CategoryProducts from "@/components/CategoryProducts";
 import FilterForm from "@/components/filterComponents/FilterForm";
 import styles from "@/components/styles";
+import { Cross } from "@/utils/icons";
+import { useState } from "react";
 
 const Category = () => {
+  const [isFilterNavOpen, setFilterNavOpen] = useState(false);
+
   return (
     <div className={`category ${styles.paddingX}`}>
       <div className={`container text-sm`}>
@@ -46,12 +52,27 @@ const Category = () => {
 
             {/* nav */}
 
-            <CategoryNav />
+            <CategoryNav
+              isFilterNavOpen={isFilterNavOpen}
+              setFilterNavOpen={setFilterNavOpen}
+            />
             <CategoryProducts />
             <CategoryPagination />
           </div>
           {/* right */}
-          <div className="min-w-[220px] max-w-[220px] px-3 hidden lg:block">
+          <div
+            className={`${
+              isFilterNavOpen ? "right-0 opacity-100" : "-right-full opacity-0"
+            } filter-nav min-w-[220px] max-w-[250px] px-5 py-7 fixed top-0 h-screen bg-white z-50 overflow-auto transition-all duration-500 lg:z-0 lg:block lg:static lg:h-auto`}
+          >
+            <div className="flex justify-end lg:hidden">
+              <button
+                type="button"
+                onClick={() => setFilterNavOpen(!isFilterNavOpen)}
+              >
+                <Cross className="text-lg" />
+              </button>
+            </div>
             <FilterForm />
           </div>
         </div>

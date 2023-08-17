@@ -7,14 +7,7 @@ import ModalSlider2 from "@/components/ModalSlider2";
 import styles from "@/components/styles";
 import { db } from "@/firebase/firebase";
 import { handleAddCart } from "@/redux/features/addToCartSlice";
-import {
-  Checked,
-  Compare,
-  Facebook,
-  Heart,
-  Instagram,
-  Twitter,
-} from "@/utils/icons";
+import { Compare, Facebook, Heart, Instagram, Twitter } from "@/utils/icons";
 import { doc, getDoc } from "firebase/firestore";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -25,7 +18,7 @@ const SingleProduct = () => {
   const params = useParams();
   const { productId } = params;
   const dispatch = useDispatch();
-  const { amount } = useSelector((state) => state.addToCartSlice);
+  const { _amount } = useSelector((state) => state.addToCartSlice);
 
   //   states
   const [productData, setProductData] = useState();
@@ -71,8 +64,6 @@ const SingleProduct = () => {
       composition: productData?.composition[0],
       property: productData?.properties[0],
     });
-
-    console.log("changing");
 
     return () => null;
   }, [productData]);
@@ -133,6 +124,7 @@ const SingleProduct = () => {
     return <div>{error}</div>;
   }
 
+  console.log(productData);
   return (
     <div className={`modalProduct ${styles.paddingX} mt-14`}>
       <div className="flex flex-col gap-5 container lg:flex-row">
@@ -205,7 +197,7 @@ const SingleProduct = () => {
                 className="outline-none px-4 py-2 border cursor-pointer"
                 onChange={handleChange}
               >
-                {productData?.sizes.map((size, index) => (
+                {productData?.sizes.map((size) => (
                   <option value={size} key={size}>
                     {size}
                   </option>
@@ -307,7 +299,8 @@ const SingleProduct = () => {
                       old_prize: productData?.old_prize,
                       discount: productData?.discount,
                       image: images[activeImg],
-                      amount,
+                      stock: productData?.quantity,
+                      amount: _amount,
                       ...selectData,
                     })
                   );

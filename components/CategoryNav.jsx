@@ -42,7 +42,7 @@ const sortsButton = [
   },
 ];
 
-const CategoryNav = () => {
+const CategoryNav = ({ isFilterNavOpen, setFilterNavOpen }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [sortSelect, setSortSelect] = useState("relavence");
   const { all_products, loading, productsLength } = useSelector(
@@ -125,6 +125,7 @@ const CategoryNav = () => {
           <button
             type="button"
             className="px-6 py-2 h-fit bg-primary_btn_bg text-primary_btn_text hover:bg-primary_btn_bg_hover hover:text-primary_btn_text_hover lg:hidden"
+            onClick={() => setFilterNavOpen(!isFilterNavOpen)}
           >
             Filter
           </button>

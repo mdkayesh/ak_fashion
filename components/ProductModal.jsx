@@ -16,13 +16,13 @@ import {
 import ModalSlider from "./ModalSlider";
 import ModalSlider2 from "./ModalSlider2";
 import Image from "next/image";
-import { handleAddCart } from "@/redux/features/addToCartSlice";
+import { handleAddCart, resetAmount } from "@/redux/features/addToCartSlice";
 
 const ProductModal = () => {
   const { isProducModalOpen, currentProduct } = useSelector(
     (state) => state.modalSlice
   );
-  const { amount } = useSelector((state) => state.addToCartSlice);
+  const { _amount } = useSelector((state) => state.addToCartSlice);
   const dispatch = useDispatch();
 
   // states
@@ -51,6 +51,8 @@ const ProductModal = () => {
     properties,
     quantity,
     sizes,
+    stock,
+    amount,
   } = currentProduct;
 
   // set all images in an array
@@ -73,6 +75,7 @@ const ProductModal = () => {
       property: properties && properties[0],
     });
 
+    dispatch(resetAmount());
     return () => null;
   }, [isProducModalOpen]);
 
@@ -110,14 +113,15 @@ const ProductModal = () => {
             >
               <Cross />
             </div>
-            <div className="flex flex-col gap-5 md:flex-row">
-              <div className="left flex gap-3 flex-col-reverse w-full md:flex-row md:w-1/2">
+            <div className="flex flex-col gap-5 lg:flex-row">
+              <div className="left flex gap-3 flex-col-reverse w-full md:flex-row lg:w-1/2">
                 <div className="w-full md:min-w-[100px] md:max-w-[100px]">
                   <div className="w-full max-w-full md:hidden">
                     <ModalSlider
                       images={images}
                       setActiveImg={setActiveImg}
                       loading={loading}
+                      isProducModalOpen={isProducModalOpen}
                     />
                   </div>
                   <div className="hidden md:block">
@@ -125,6 +129,7 @@ const ProductModal = () => {
                       images={images}
                       setActiveImg={setActiveImg}
                       loading={loading}
+                      isProducModalOpen={isProducModalOpen}
                     />
                   </div>
                 </div>
@@ -147,7 +152,7 @@ const ProductModal = () => {
                   />
                 </div>
               </div>
-              <div className="right w-full md:w-1/2">
+              <div className="right w-full lg:w-1/2">
                 <h2 className={`${styles.h2} mb-3`}>{title}</h2>
                 {old_prize && (
                   <p className="line-through text-sm text-text_color">
@@ -284,7 +289,8 @@ const ProductModal = () => {
                             old_prize: old_prize,
                             discount: discount,
                             image: images[activeImg],
-                            amount,
+                            stock: stock,
+                            amount: _amount,
                             ...selectData,
                           })
                         );

@@ -18,7 +18,7 @@ const styles = {
 
   // filter
 
-  filterHeading: `mb-3 text-heading_color text-lg uppercase font-[500]`,
+  filterHeading: `mb-3 lg:text-heading_color cursor-pointer text-base uppercase font-[500] lg:text-lg flex justify-between items-center lg:cursor-default`,
   filterLevel: `flex capitalize items-center justify-between cursor-pointer mt-2`,
   inputContainer: `relative min-w-[16px] min-h-[16px] h-[12px] border peer-checked:border-primary rounded-full border-heading_color border-solid text-secondary`,
   filterInput: `appearance-none peer`,

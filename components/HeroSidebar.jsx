@@ -9,49 +9,63 @@ import {
   Youtube,
 } from "@/utils/icons";
 import { SidebarDrop, SidebarDrop2 } from "./Dropdown";
+import Link from "next/link";
 
 const sidebarLinks = [
   {
+    url: "/category",
     title: "Shop",
     subTitle: [
       {
+        url: "/category",
         title: "Western",
         subTitle: [
           {
+            url: "/category",
             title: "Skirts",
           },
           {
+            url: "/category",
             title: "Jumpsuits",
           },
           {
+            url: "/category",
             title: "Shorts",
           },
         ],
       },
       {
+        url: "/category",
         title: "Traditional",
         subTitle: [
           {
+            url: "/category",
             title: "Kurtis",
           },
           {
+            url: "/category",
             title: "Suits",
           },
           {
+            url: "/category",
             title: "Choli",
           },
         ],
       },
       {
+        url: "/category",
         title: "Party Wear",
         subTitle: [
           {
+            url: "/category",
             title: "Maxi Dress",
           },
           {
+            url: "/category",
             title: " Crepe Shirt",
           },
           {
+            url: "/category",
             title: "White Dress",
           },
         ],
@@ -60,45 +74,58 @@ const sidebarLinks = [
   },
 
   {
+    url: "/category",
     title: "Collection",
     subTitle: [
       {
+        url: "/category",
         title: "Printed Kurta",
       },
       {
+        url: "/category",
         title: "Checkered Trouser",
       },
       {
+        url: "/category",
         title: "Floral Kurta",
       },
       {
+        url: "/category",
         title: "Loose Trousers",
       },
       {
+        url: "/category",
         title: "Sports Tights",
       },
     ],
   },
 
   {
+    url: "/category",
     title: "Fashion",
   },
   {
+    url: "/category",
     title: "Trousers",
   },
   {
+    url: "/category",
     title: "Tops",
   },
   {
+    url: "/category",
     title: "Tights",
   },
   {
+    url: "/category",
     title: "Dresses",
   },
   {
+    url: "/category",
     title: "Pants",
   },
   {
+    url: "/category",
     title: "Casual",
   },
 ];
@@ -136,7 +163,9 @@ const HeroSidebar = () => {
               className="relative mt-3 text-sm flex items-center justify-between cursor-pointer hover:text-primary [&_>_.dropdown]:hover:visible [&_>_.dropdown]:hover:scale-x-100"
               key={link.title}
             >
-              <span>{link.title}</span>
+              <Link href={link.url}>
+                <span>{link.title}</span>
+              </Link>
               {link.subTitle && <DownArrow className="-rotate-90" />}
               {link.subTitle && link.title === "Shop" && (
                 <SidebarDrop links={link.subTitle} />

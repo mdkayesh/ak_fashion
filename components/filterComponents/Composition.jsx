@@ -1,7 +1,12 @@
-import { Checked } from "@/utils/icons";
+import { Checked, Minus, Plus } from "@/utils/icons";
 import styles from "../styles";
 
-const Compositions = ({ handleChange }) => {
+const Compositions = ({
+  values,
+  handleChange,
+  filterName,
+  handleFilterName,
+}) => {
   const compositions = [
     {
       title: "ceramic",
@@ -21,9 +26,23 @@ const Compositions = ({ handleChange }) => {
   ];
 
   return (
-    <div className="mt-6">
-      <h3 className={`${styles.filterHeading}`}>Compositions</h3>
-      <div>
+    <div className="mt-3 lg:mt-6">
+      <h3
+        className={`${styles.filterHeading}`}
+        onClick={() => handleFilterName("compositions")}
+      >
+        <span>Compositions</span>
+        <span className="lg:hidden">
+          {filterName === "compositions" ? <Minus /> : <Plus />}
+        </span>
+      </h3>
+      <div
+        className={`${
+          filterName === "compositions"
+            ? "max-h-[350px]"
+            : "max-h-0 lg:max-h-[350px]"
+        } transition-all duration-500 ease-in-out overflow-hidden`}
+      >
         {compositions.map((com) => (
           <label
             htmlFor={com.title}
@@ -38,6 +57,7 @@ const Compositions = ({ handleChange }) => {
                   id={com.title}
                   value={com.title}
                   className={`${styles.filterInput}`}
+                  checked={values.compositions.includes(com.title)}
                   onChange={handleChange}
                 />
                 <Checked className={`${styles.filterChecked}`} />
@@ -46,7 +66,6 @@ const Compositions = ({ handleChange }) => {
                 {com.title}
               </span>
             </div>
-            <span>7</span>
           </label>
         ))}
       </div>

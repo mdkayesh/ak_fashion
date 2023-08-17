@@ -43,7 +43,7 @@ const MyAccount = () => {
     },
     {
       title: "Order History and Details",
-      url: "my-account/information",
+      url: "my-account/order-details",
       icon: <OrderCart className="w-10 h-10" />,
     },
     {
@@ -53,7 +53,7 @@ const MyAccount = () => {
     },
     {
       title: "My wishlists",
-      url: "my-account/information",
+      url: "my-account/my-wishlists",
       icon: <HeartFill className="w-10 h-10" />,
     },
   ];

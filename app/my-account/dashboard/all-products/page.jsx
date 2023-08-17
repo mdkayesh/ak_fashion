@@ -75,8 +75,6 @@ const AllProducts = () => {
     }
   };
 
-  console.log(currentPage);
-
   return (
     <div className={`${styles.paddingX} mt-14 container`}>
       <LocationNav

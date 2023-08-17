@@ -4,11 +4,12 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, Shopping, User } from "@/utils/icons";
+import { Menu, Search, Shopping, User } from "@/utils/icons";
 import { CartProductsDrop, ProfileDrop } from "./Dropdown";
 import CloseDropdownOnClick from "@/utils/CloseDropdownOnClick";
 import SearchBar from "./SearchBar";
 import { useSelector } from "react-redux";
+import MobileNav from "./MobileNav";
 
 const navlinks = [
   {
@@ -41,6 +42,8 @@ const Nav = () => {
   const [isOpen, setIsOpen] = useState(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const { cartProducts } = useSelector((state) => state.addToCartSlice);
 
   // get data from redux
@@ -63,7 +66,12 @@ const Nav = () => {
         setIsScrolling(false);
       }
     };
+
+    setIsClient(true);
+
     window.addEventListener("scroll", handleScroll);
+
+    return () => removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -91,7 +99,7 @@ const Nav = () => {
 
           {/* logo */}
 
-          <div className="logo flex-[0.2]">
+          <Link href={"/"} className="logo flex-[0.2]">
             <Image
               src="/assets/logo.png"
               width={80}
@@ -99,7 +107,7 @@ const Nav = () => {
               className="mr-auto max-w-[80px] lg:ml-auto w-auto h-auto"
               alt="logo"
             />
-          </div>
+          </Link>
 
           {/* icons */}
 
@@ -136,19 +144,18 @@ const Nav = () => {
             </div>
 
             <div className="relative">
-              <button
-                type="button"
-                className="font-bold relative flex gap-1 items-center hover:text-primary [&_span]:hover:text-primary"
+              <div
+                className="font-bold relative flex gap-1 items-center cursor-pointer"
                 onClick={() => handleToggle("cart")}
               >
-                <Shopping className="h-6 w-6" />
-                <div className="absolute -top-1 bg-primary h-4 w-4 flex items-center justify-center -right-1.5 text-xs text-white rounded-full lg:hidden">
-                  {cartProducts.length}
-                </div>
-                <span className="text-sm uppercase font-normal text-text_color hidden lg:inline-block">
-                  {cartProducts.length} Item
+                <Shopping className="h-6 w-6 hover:text-primary" />
+                <span className="absolute -top-1 bg-primary h-4 w-4 flex items-center justify-center -right-1.5 text-xs text-white rounded-full lg:hidden">
+                  {isClient ? cartProducts.length : 0}
                 </span>
-              </button>
+                <span className="text-sm uppercase font-normal text-text_color hidden hover:text-primary lg:inline-block">
+                  {isClient ? cartProducts.length : 0} Item
+                </span>
+              </div>
 
               <CloseDropdownOnClick onClose={handleToClose}>
                 <div
@@ -158,14 +165,29 @@ const Nav = () => {
                       : "scale-x-0 invisible"
                   } ${styles.dropContainer} -left-[260px] w-[300px]`}
                 >
-                  <CartProductsDrop />
+                  <CartProductsDrop isClient={isClient} />
                 </div>
               </CloseDropdownOnClick>
             </div>
+
+            {/* menu */}
+
+            <button
+              type="button"
+              className="menu lg:hidden"
+              onClick={() => setIsNavOpen(!isNavOpen)}
+            >
+              <Menu className="text-2xl" />
+            </button>
           </div>
         </div>
         {isSearchOpen && <SearchBar setIsSearchOpen={setIsSearchOpen} />}
       </div>
+      <MobileNav
+        navlinks={navlinks}
+        isNavOpen={isNavOpen}
+        setIsNavOpen={setIsNavOpen}
+      />
     </div>
   );
 };

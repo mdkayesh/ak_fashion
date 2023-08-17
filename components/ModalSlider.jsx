@@ -11,7 +11,12 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import styles from "./styles";
 
-export default function ModalSlider({ images, setActiveImg, loading }) {
+export default function ModalSlider({
+  images,
+  setActiveImg,
+  loading,
+  isProducModalOpen,
+}) {
   return (
     <>
       <Swiper
@@ -29,7 +34,9 @@ export default function ModalSlider({ images, setActiveImg, loading }) {
             <div className="w-full relative">
               <div
                 className={`${
-                  loading ? "opacity-100 visible" : "invisible opacity-0"
+                  loading && isProducModalOpen
+                    ? "opacity-100 visible"
+                    : "invisible opacity-0"
                 } w-full h-full backdrop-blur-sm transition-all duration-500 absolute top-0 left-0`}
               />
               <Image

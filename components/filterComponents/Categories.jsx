@@ -1,14 +1,12 @@
 "use client";
 
-import { Checked } from "@/utils/icons";
+import { Checked, Minus, Plus } from "@/utils/icons";
 import styles from "../styles";
-import { useDispatch, useSelector } from "react-redux";
-import { filterBy, setProductsLength } from "@/redux/features/filterSlice";
 import { useEffect, useState } from "react";
 import { db, getCount } from "@/firebase/firebase";
 import { collection, query, where } from "firebase/firestore";
 
-const Categories = ({ handleChange }) => {
+const Categories = ({ values, handleChange, filterName, handleFilterName }) => {
   // states
 
   const [categoryCount, setCategoryCount] = useState();
@@ -59,11 +57,17 @@ const Categories = ({ handleChange }) => {
     return () => null;
   }, []);
 
-  // node -e 'console.log(v8.getHeapStatistics().heap_size_limit/(1024*1024))'
-
   return (
     <div>
-      <h3 className={`${styles.filterHeading}`}>Categories</h3>
+      <h3
+        className={`${styles.filterHeading}`}
+        onClick={() => handleFilterName("category")}
+      >
+        <span>Categories</span>
+        <span className="lg:hidden">
+          {filterName === "category" ? <Minus /> : <Plus />}
+        </span>
+      </h3>
       {loading ? (
         <div className="flex flex-col gap-4">
           {[...Array(6)].map((_, index) => (
@@ -71,7 +75,13 @@ const Categories = ({ handleChange }) => {
           ))}
         </div>
       ) : (
-        <div>
+        <div
+          className={`${
+            filterName === "category"
+              ? "max-h-[350px]"
+              : "max-h-0 lg:max-h-[350px]"
+          } transition-all duration-500 ease-in-out overflow-hidden`}
+        >
           {categories.map((category) => (
             <label
               htmlFor={category.title}
@@ -86,6 +96,7 @@ const Categories = ({ handleChange }) => {
                     id={category.title}
                     value={category.title}
                     className={`${styles.filterInput}`}
+                    checked={values.categories.includes(category.title)}
                     onChange={handleChange}
                   />
                   <Checked className={`${styles.filterChecked}`} />

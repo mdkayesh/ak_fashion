@@ -1,7 +1,12 @@
-import { Checked } from "@/utils/icons";
+import { Checked, Minus, Plus } from "@/utils/icons";
 import styles from "../styles";
 
-const Availability = ({ handleChange }) => {
+const Availability = ({
+  handleChange,
+  filterName,
+  handleFilterName,
+  values,
+}) => {
   const availability = [
     {
       title: "available",
@@ -15,9 +20,23 @@ const Availability = ({ handleChange }) => {
   ];
 
   return (
-    <div className="mt-6">
-      <h3 className={`${styles.filterHeading}`}>Availability</h3>
-      <div>
+    <div className="mt-3 lg:mt-6">
+      <h3
+        className={`${styles.filterHeading}`}
+        onClick={() => handleFilterName("available")}
+      >
+        <span>Availability</span>
+        <span className="lg:hidden">
+          {filterName === "available" ? <Minus /> : <Plus />}
+        </span>
+      </h3>
+      <div
+        className={`${
+          filterName === "available"
+            ? "max-h-[350px]"
+            : "max-h-0 lg:max-h-[350px]"
+        } transition-all duration-500 ease-in-out overflow-hidden`}
+      >
         {availability.map((avail) => (
           <label
             htmlFor={avail.title}
@@ -32,6 +51,7 @@ const Availability = ({ handleChange }) => {
                   id={avail.title}
                   value={avail.title}
                   className={`${styles.filterInput}`}
+                  checked={values.availablility.includes(avail.title)}
                   onChange={handleChange}
                 />
                 <Checked className={`${styles.filterChecked}`} />
@@ -40,7 +60,6 @@ const Availability = ({ handleChange }) => {
                 {avail.title}
               </span>
             </div>
-            <span>7</span>
           </label>
         ))}
       </div>
