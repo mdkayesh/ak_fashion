@@ -357,7 +357,6 @@ const AddProducts = () => {
                         : ""
                     }`}
                   />
-                  {console.log(touched)}
                   {errors.prize && touched.prize && (
                     <p className={`${styles.inputErrorText}`}>{errors.prize}</p>
                   )}

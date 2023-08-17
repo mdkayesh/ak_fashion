@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 const WishList = () => {
   const { wishList } = useSelector((state) => state.addToCartSlice);
 
-  console.log(wishList);
   return (
     <div className={`${styles.paddingX}`}>
       <div className="container">

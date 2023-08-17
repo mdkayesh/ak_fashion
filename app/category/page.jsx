@@ -62,8 +62,10 @@ const Category = () => {
           {/* right */}
           <div
             className={`${
-              isFilterNavOpen ? "right-0 opacity-100" : "-right-full opacity-0"
-            } filter-nav min-w-[220px] max-w-[250px] px-5 py-7 fixed top-0 h-screen bg-white z-50 overflow-auto transition-all duration-500 lg:z-0 lg:block lg:static lg:h-auto`}
+              isFilterNavOpen
+                ? "right-0 opacity-100"
+                : "-right-full opacity-0 lg:opacity-100"
+            } filter-nav min-w-[220px] max-w-[250px] px-5 py-7 lg:py-0 lg:px-3 fixed top-0 h-screen bg-white z-50 overflow-auto transition-all duration-500 lg:z-0 lg:block lg:static lg:h-auto`}
           >
             <div className="flex justify-end lg:hidden">
               <button

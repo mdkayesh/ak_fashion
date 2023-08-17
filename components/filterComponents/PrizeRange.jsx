@@ -35,7 +35,7 @@ const PrizeRange = ({
       <div
         className={`${
           filterName === "prizeRange" ? "h-[60px]" : "h-0 lg:h-auto"
-        } transition-all duration-500 ease-in-out overflow-hidden`}
+        } transition-all duration-500 ease-in-out overflow-hidden lg:overflow-visible`}
       >
         <div className="flex justify-between items-center mb-3">
           <span>${values.minPrize}</span>

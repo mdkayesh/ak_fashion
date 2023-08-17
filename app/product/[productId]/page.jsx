@@ -124,7 +124,6 @@ const SingleProduct = () => {
     return <div>{error}</div>;
   }
 
-  console.log(productData);
   return (
     <div className={`modalProduct ${styles.paddingX} mt-14`}>
       <div className="flex flex-col gap-5 container lg:flex-row">

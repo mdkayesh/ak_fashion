@@ -2,7 +2,7 @@
 
 import { db } from "@/firebase/firebase";
 import { Cross, Search } from "@/utils/icons";
-import { and, collection, getDocs, or, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -15,7 +15,6 @@ const SearchBar = ({ setIsSearchOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchValue);
   };
 
   useEffect(() => {

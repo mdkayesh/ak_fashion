@@ -92,7 +92,6 @@ const addToCartSlice = createSlice({
         const updatedWish = state.wishList.filter((w) => w.id !== payload.id);
 
         state.wishList = updatedWish;
-        console.log("updatedWish:", updatedWish);
         localStorage.setItem("wishList", JSON.stringify(state.wishList));
       } else {
         state.wishList = [...state.wishList, payload];

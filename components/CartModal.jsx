@@ -15,11 +15,8 @@ const CartModal = () => {
 
   useEffect(() => {
     setProduct(cartProducts.find((p) => p.id === currentProductID));
-
-    console.log("cartProducts");
   }, [currentProductID, cartProducts]);
 
-  console.log(cartProducts);
   return (
     <div
       className={`${
